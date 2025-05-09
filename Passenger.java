@@ -6,11 +6,11 @@ public class Passenger {
 
     private int passengerId;
     private String name;
-    private int passportNumber;
-    private int dateOfBirth;
+    private String passportNumber;
+    private String dateOfBirth;
     private String specialRequests;
 
-    public Passenger(int passengerId, String name, int passportNumber, int dateOfBirth, String specialRequests) {
+    public Passenger(int passengerId, String name, String passportNumber, String dateOfBirth, String specialRequests) {
         this.passengerId = passengerId;
         this.name = name;
         this.passportNumber = passportNumber;
@@ -18,10 +18,26 @@ public class Passenger {
         this.specialRequests = specialRequests;
     }
     
-    public String toString() {
-        return passengerId + "," + name + "," + passportNumber + "," + dateOfBirth + "," +
-               specialRequests;
-    } 
+    public String toFileString() {
+        return passengerId + "," + name + "," + passportNumber +","
+                + dateOfBirth + "," +specialRequests;
+    }
+    public static Passenger fromFileString(String data){
+        String[] parts =data.split(",",-1);
+        if (parts.length <5) {
+            System.out.println("invalid passenger data");
+            return null;
+        }
+        
+                int passengerId = Integer.parseInt(parts[0]);
+                String name = parts[1];
+                String passportNumber = parts[2];
+                String dateOfBirth = parts[3];
+                String specialRequests = parts[4];
+                
+                
+        return new Passenger(passengerId, name, passportNumber, dateOfBirth, specialRequests);
+    }
 
     
     public void updateinfo(){

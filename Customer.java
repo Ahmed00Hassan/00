@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class Customer extends User {
     
-private ArrayList<Booking> bookingHistory;
-private int customerId;
-String address;
-ArrayList<String> customer_preferences;
+    private ArrayList<Booking> bookingHistory;
+    private int customerId;
+    String address;
+    ArrayList<String> customer_preferences;
 
     public Customer() {
     }
@@ -45,8 +45,16 @@ ArrayList<String> customer_preferences;
         this.bookingHistory =new ArrayList<>();
     }
 
-        
-    public void searchflights(Flight flight){
+    @Override
+     public void login(String email, String password){
+         
+     }
+    @Override
+     public void logout(String email, String password){
+         
+     }
+ 
+    public void searchflights(){
         
     }
     

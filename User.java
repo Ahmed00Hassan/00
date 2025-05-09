@@ -3,9 +3,6 @@ package flight_booking_system;
 
 public abstract class User {
 
-    static User fromFileString(String line) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 protected int userId;
 protected String userName;
@@ -59,8 +56,8 @@ protected String contactInfo;
 
 
 
-//
-//    public abstract void login(String email, String password);
-//
-//    public abstract void logout();
+
+    public abstract void login(String email, String password);
+
+    public abstract void logout(String email, String password);
 }

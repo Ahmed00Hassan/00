@@ -27,6 +27,15 @@ public class Administrator extends User {
     public String toString(){
         return getUserId()+","+getUserName()+","+getName()+","+getEmail();
     }
+    
+    @Override
+     public void login(String email, String password){
+         
+     }
+    @Override
+     public void logout(String email, String password){
+         
+     }
         
     
     

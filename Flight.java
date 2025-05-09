@@ -51,13 +51,36 @@ public class Flight {
         this.firstClassPrice = firstClassPrice;
     }
 
-    @Override
-    public String toString() {
+    public String toFileString() {
         return flightID + "," + airline + "," + source + "," + destination + "," +
                departureTime + "," + arrivalTime + "," + totalSeats + "," +
                availableSeats + "," + economyPrice + "," +
                businessPrice + "," + firstClassPrice;
-    } 
+    }
+    public static Flight fromFileString(String data){
+        String[] parts = data.split(",",-1);
+        if (parts.length<11) {
+            System.out.println("invalid flight data");
+            return null;
+        }
+                
+                String flightID = parts[0];
+                String airline = parts[1];
+                String source = parts[2];
+                String destination = parts[3];
+                String departureTime = parts[4];
+                String arrivalTime = parts[5];
+                int totalSeats = Integer.parseInt(parts[6]);
+                int availableSeats = Integer.parseInt(parts[7]);
+                double economyPrice = Double.parseDouble(parts[8]);
+                double businessPrice = Double.parseDouble(parts[9]);
+                double firstClassPrice = Double.parseDouble(parts[10]);
+                
+                
+        return new Flight(flightID, airline, source, destination, departureTime,
+                            arrivalTime, totalSeats, availableSeats, economyPrice,
+                                businessPrice, firstClassPrice);
+    }
     
     
     

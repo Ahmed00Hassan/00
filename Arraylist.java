@@ -5,5 +5,9 @@
 package flight_booking_system;
 
 class Arraylist<T> {
+
+    boolean isEmpty() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
