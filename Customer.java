@@ -1,0 +1,64 @@
+
+package flight_booking_system;
+
+import java.util.ArrayList;
+
+
+public class Customer extends User {
+    
+private ArrayList<Booking> bookingHistory;
+private int customerId;
+String address;
+ArrayList<String> customer_preferences;
+
+    public Customer() {
+    }
+
+    public Customer(int userId, String userName, String name, String email, String password, String contactInfo) {
+        super(userId, userName, name, email, password, contactInfo);
+    }
+    
+    public static Customer fromFileString(String line) {
+        String[] parts = line.split(",");
+        return new Customer(
+            Integer.parseInt(parts[0]),
+            parts[1],
+            parts[2],
+            parts[3],
+            parts[4],
+            parts[5]
+        );
+    }
+    public String toString(){
+        return getUserId()+","+getUserName()+","+getName()+","+getEmail();
+    }    
+
+
+    public Customer(int customerId, String address, ArrayList<String> customer_preferences,
+                    int Userid, String Username, String Name,
+                    String Email, String Password, String ContactInfo) {
+        
+        super(Userid, Username, Name, Email, Password, ContactInfo);
+        this.customerId = customerId;
+        this.address = address;
+        this.customer_preferences = customer_preferences;
+        this.bookingHistory =new ArrayList<>();
+    }
+
+        
+    public void searchflights(Flight flight){
+        
+    }
+    
+    public void creatBooking(Booking booking){
+    
+    }
+    
+    public void viewBookings(){
+        
+    }
+    
+    public void cancelBooking(){
+        
+    }
+}
