@@ -1,21 +1,25 @@
 
 package flight_booking_system;
 
+import java.util.Scanner;
+
+
 public abstract class User {
 
-
-protected int userId;
+Scanner input =new Scanner(System.in);
+protected String userId;
 protected String userName;
 protected String name;
 protected String email;
 protected String password;
-protected String contactInfo;
+protected boolean contactInfo;
+static User loggedInUser;
 
     public User() {
     }
 
 
-    public User(int userId, String userName, String name, String email, String password, String contactInfo) {
+    public User(String userId, String userName, String name, String email, String password, boolean contactInfo) {
         this.userId = userId;
         this.userName = userName;
         this.name = name;
@@ -24,7 +28,47 @@ protected String contactInfo;
         this.contactInfo = contactInfo;
     }
 
-    public int getUserId() {
+    public void setUserId() {
+        System.out.print("Enter userId: ");
+        this.userId=input.nextLine();
+    }
+
+    public void setUserName() {
+        System.out.print("Enter your user name: ");
+        this.userName = input.nextLine();
+    }
+
+    public void setName() {
+        System.out.print("Enter your name: ");
+        this.name = input.nextLine();
+    }
+
+    public void setEmail() {
+        System.out.print("Enter your email: ");
+        this.email = input.nextLine();
+    }
+
+    public void setPassword() {
+        while (true) {
+            System.out.print("Enter your password (with letters and numbers) ");
+            String pass = input.nextLine();
+            if (pass.length() <6){
+                System.out.println("password must be at leats 6 characters");
+                continue;
+
+            }else{ 
+                this.password = pass;
+                    return;
+            }
+        }
+    }
+
+    public void setContactInfo() {
+        System.out.println("Enter your contact(true or false)");
+        this.contactInfo = input.nextBoolean();
+    }
+
+    public String getUserId() {
         return userId;
     }
 
@@ -32,19 +76,19 @@ protected String contactInfo;
         return userName;
     }
 
-    public String getName() {
-        return name;
+    protected String getName() {
+        return this.name;
     }
 
-    public String getEmail() {
-        return email;
+    protected String getEmail() {
+        return this.email;
     }
 
-    public String getPassword() {
-        return password;
+    protected String getPassword() {
+        return this.password;
     }
 
-    public String isContactInfo() {
+    public boolean isContactInfo() {
         return contactInfo;
     }
 
@@ -55,9 +99,7 @@ protected String contactInfo;
     }
 
 
+    public abstract void login();
 
-
-    public abstract void login(String email, String password);
-
-    public abstract void logout(String email, String password);
+    public abstract void logout();
 }
