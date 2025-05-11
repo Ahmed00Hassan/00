@@ -13,8 +13,8 @@ public class Flight_Booking_system {
 //        c1.customerInfo();
 //        FileManager.saveUser(c1);
 //            c1.searchflights();
-c1.login();
-c1.logout();
+        c1.login();
+        c1.logout();
         System.out.println("all users:");
         for (User u: FileManager.loadUsers()) {
             System.out.println(u.toFileString());

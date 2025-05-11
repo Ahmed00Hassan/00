@@ -41,9 +41,9 @@ public class Booking {
         seatData.setLength(seatData.length() - 1);
     }
 
-    return String.join("##", // استخدم فاصل واضح لمنع مشاكل parsing
+    return String.join("##",
         bookingReference,
-        customer.getUserName(), // أو customer.getEmail()
+        customer.getUserName(),
         flight.getFlightID(),
         seatData.toString(),
         status,

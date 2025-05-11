@@ -169,70 +169,70 @@ public class Customer extends User {
         FileManager.savePassenger(p);
     }
 
-    String bookingRef = "BK" + System.currentTimeMillis();
-    Booking booking = new Booking(bookingRef, this, selectedFlight); // استخدم this و flight object
+        String bookingRef = "BK" + System.currentTimeMillis();
+        Booking booking = new Booking(bookingRef, this, selectedFlight); 
 
-    for (int i = 0; i < passengers.size(); i++) {
-        booking.addPassenger(passengers.get(i), seatSelections.get(i)); // تستخدم طريقة الحجز الفعلية
-    }
-
-    FileManager.saveBooking(booking);
-    System.out.println("Booking created successfully! Reference: " + bookingRef);
-}
-
-    
-    public void viewBookings() {
-    List<Booking> bookings = FileManager.loadBookings();
-    boolean found = false;
-
-    for (Booking booking : bookings) {
-        if (booking.getCustomer().getUserName().equalsIgnoreCase(this.getUserName())) {
-            System.out.println("Booking Ref: " + booking.getBookingReference());
-            System.out.println("Flight Id: " + booking.getFlight().getFlightID());
-            System.out.println("Seats: " + booking.getSeatSelections());
-            System.out.println("Status: " + booking.getStatus() + " | Payment: " + booking.getPaymentStatus());
-            System.out.println("------");
-            found = true;
+        for (int i = 0; i < passengers.size(); i++) {
+            booking.addPassenger(passengers.get(i), seatSelections.get(i)); 
         }
+
+        FileManager.saveBooking(booking);
+        System.out.println("Booking created successfully! Reference: " + bookingRef);
     }
 
-    if (!found) {
-        System.out.println("You have no bookings.");
-    }
-    }
 
-    public void cancelBooking() {
-    System.out.print("Enter booking reference to cancel: ");
-    String ref = input.nextLine();
+        public void viewBookings() {
+        List<Booking> bookings = FileManager.loadBookings();
+        boolean found = false;
 
-    List<Booking> bookings = FileManager.loadBookings();
-    boolean removed = false;
-
-    Iterator<Booking> iterator = bookings.iterator();
-    while (iterator.hasNext()) {
-        Booking booking = iterator.next();
-        if (booking.getBookingReference().equalsIgnoreCase(ref) &&
-            booking.getCustomer().getUserName().equalsIgnoreCase(this.getUserName())) {
-            iterator.remove();
-            removed = true;
-            break;
-        }
-    }
-
-    if (removed) {
-        // إعادة كتابة الملف بعد الحذف
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FileManager.BOOKINGS_FILE))) {
-            for (Booking b : bookings) {
-                writer.println(b.toFileString());
+        for (Booking booking : bookings) {
+            if (booking.getCustomer().getUserName().equalsIgnoreCase(this.getUserName())) {
+                System.out.println("Booking Ref: " + booking.getBookingReference());
+                System.out.println("Flight Id: " + booking.getFlight().getFlightID());
+                System.out.println("Seats: " + booking.getSeatSelections());
+                System.out.println("Status: " + booking.getStatus() + " | Payment: " + booking.getPaymentStatus());
+                System.out.println("------");
+                found = true;
             }
-            System.out.println("Booking cancelled successfully.");
-        } catch (IOException e) {
-            System.out.println("Error writing to bookings file.");
         }
-    } else {
-        System.out.println("Booking not found or not yours.");
+
+        if (!found) {
+            System.out.println("You have no bookings.");
+        }
+        }
+
+        public void cancelBooking() {
+        System.out.print("Enter booking reference to cancel: ");
+        String ref = input.nextLine();
+
+        List<Booking> bookings = FileManager.loadBookings();
+        boolean removed = false;
+
+        Iterator<Booking> iterator = bookings.iterator();
+        while (iterator.hasNext()) {
+            Booking booking = iterator.next();
+            if (booking.getBookingReference().equalsIgnoreCase(ref) &&
+                booking.getCustomer().getUserName().equalsIgnoreCase(this.getUserName())) {
+                iterator.remove();
+                removed = true;
+                break;
+            }
+        }
+
+        if (removed) {
+            // إعادة كتابة الملف بعد الحذف
+            try (PrintWriter writer = new PrintWriter(new FileWriter(FileManager.BOOKINGS_FILE))) {
+                for (Booking b : bookings) {
+                    writer.println(b.toFileString());
+                }
+                System.out.println("Booking cancelled successfully.");
+            } catch (IOException e) {
+                System.out.println("Error writing to bookings file.");
+            }
+        } else {
+            System.out.println("Booking not found or not yours.");
+        }
     }
-}
 
 
 }
